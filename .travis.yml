@@ -7,7 +7,7 @@ php:
   - 7.2
 
 before_script:
-  - composer install --dev
+  - composer install
 
 script:
-  - composer run-script ci
+  - composer run-script tester
