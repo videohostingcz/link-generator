@@ -1,0 +1,41 @@
+{
+    "name": "videohostingcz/link-generator",
+    "description": "Knihovna generující linky pro snadný přístup k souborům uloženým na úložištích VideoHosting.cz.",
+    "keywords": [""],
+    "homepage": "http://www.videohosting.cz",
+    "license": "MIT",
+    "support": {
+	"issues": "https://github.com/videohostingcz/link-generator/issues"
+    },
+    "require": {
+        "php": "^5.6.30"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+	"squizlabs/PHP_CodeSniffer": "*"
+    },
+    "autoload": {
+        "psr-4": { 
+            "LinkGenerator\\": "src/"
+        },
+	"classmap": ["src/"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LinkGenerator\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "scripts": {
+	"ci": [
+            "@tester",
+            "@phpcs"
+        ],
+	"tester": "phpunit tests/*",
+	"phpcs": "phpcs --standard=PSR2 src tests"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
