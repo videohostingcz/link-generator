@@ -49,6 +49,10 @@ Popis dostupných klíčů pole argumentů:
 * **rate** - Omezení rychlosti servírování v bytech nebo kilobytech (sufix k) za sekundu.
 
 ```Příklad: $params['rate'] = 150k```
+* **rateafter** - Nastaví počáteční část v megabytech (sufix m), po níž bude další přenos na klienta omezen. Použití bez parametru *rate* nemá žádný vliv.
+Zatím je nastavitelná pouze hodnota 10 MB. Pracujeme na zrušení tohoto omezení.
+
+```Příklad: $params['rateafter'] = 10m```
 * **ip** - Omezení přístupu k souboru jen z konkrétní části sítě. Používá se ve spojení s parametrem *ipm*. Hodnotou může být konkrétní IPv4 nebo IPv6.
 
 ```Příklad: $params['ip'] = '::1'```
