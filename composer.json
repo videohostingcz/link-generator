@@ -30,12 +30,22 @@
     },
     "scripts": {
 	"ci": [
-            "@tester",
-            "@phpcs"
+            "@phpcs",
+            "@tester"
         ],
 	"tester": "phpunit tests/*",
-	"phpcs": "phpcs --standard=ruleset.xml src tests"
+	"phpcs": "phpcs --standard=ruleset.xml src tests",
+	"phpcbf": "phpcbf --standard=ruleset.xml src tests",
+	"post-install-cmd": [
+	    "[ ! -d .git/hooks ] || (echo '#!/bin/bash\n\ncomposer phpcs' > .git/hooks/pre-commit && chmod a+x .git/hooks/pre-commit)"
+	]
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts-descriptions": {
+	"ci": "Run commands qa and tester",
+	"tester": "Run tester",
+	"phpcs": "Run code standard checker",
+	"phpcbf": "Run code standard fixer"
+    }
 }

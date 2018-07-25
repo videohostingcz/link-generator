@@ -1,4 +1,5 @@
 <?php
+
 namespace Videohostingcz\Tests;
 
 use Videohostingcz\LinkGenerator;
@@ -61,6 +62,10 @@ class LinkGeneratorTest extends \PHPUnit_Framework_TestCase
         $url = $this->generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['token' => '9f4a6a71499', 'rate' => '150k']);
         $this->assertSame('https://s1.cdn.cz/wq5UXbiW.mp4?token=9f4a6a71499&rate=150k', $url);
 
+        // view link to private file with values of rate and rateafter
+        $url = $this->generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['token' => '9f4a6a71499', 'rate' => '50k', 'rateafter' => '10m']);
+        $this->assertSame('https://s1.cdn.cz/wq5UXbiW.mp4?token=9f4a6a71499&rate=50k&rateafter=10m', $url);
+
         // download link to private file with value of IPv4
         $url = $this->generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['ip' => '127.0.0.1']);
         $this->assertSame('https://s1.cdn.cz/wq5UXbiW.mp4?ip=127.0.0.1', $url);
@@ -72,7 +77,7 @@ class LinkGeneratorTest extends \PHPUnit_Framework_TestCase
         // download link to private file with value of IPv6
         $url = $this->generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['ip' => '2001:0db8:0:0:0:0:1428:57ab']);
         $this->assertSame('https://s1.cdn.cz/wq5UXbiW.mp4?ip=2001%3A0db8%3A0%3A0%3A0%3A0%3A1428%3A57ab', $url);
-        
+
         // download link to private file with value of IPv6 with site mask
         $url = $this->generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['ip' => '2001:0db8:0:0:0:0:1428:57ab', 'ipm' => 128]);
         $this->assertSame('https://s1.cdn.cz/wq5UXbiW.mp4?ip=2001%3A0db8%3A0%3A0%3A0%3A0%3A1428%3A57ab&ipm=128', $url);
@@ -82,9 +87,13 @@ class LinkGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('https://s1.cdn.cz/wq5UXbiW.mp4?token=9f4a6a71499&rate=160k&sparams=token%2Crate&signature=6112c9ed34d97853c8c2333cec0d424e0a7089f1', $url);
 
         // view link to private file with sparams value
+        $url = $this->generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['token' => '9f4a6a71499', 'rate' => '160k', 'rateafter' => '10m', 'sparams' => 'token,rate,rateafter']);
+        $this->assertSame('https://s1.cdn.cz/wq5UXbiW.mp4?token=9f4a6a71499&rate=160k&rateafter=10m&sparams=token%2Crate%2Crateafter&signature=15a18a2e0dabc09132b903387eeba4245d6b31e6', $url);
+
+        // view link to private file with sparams value
         $url = $this->generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['token' => '9f4a6a71499', 'rate' => '160k', 'sparams' => 'rate,token']);
         $this->assertSame('https://s1.cdn.cz/wq5UXbiW.mp4?token=9f4a6a71499&rate=160k&sparams=rate%2Ctoken&signature=e76c158945c683947291f6bcdf61eda85fe60202', $url);
-        
+
         // view link to private file with sparams value path
         $url = $this->generator->generate('s1.cdn.cz/33/LezTxJHdxSgXUeks84u12fvyHoAtP6sGQt0YUdyCLYF6gH7MTKDSnGfVkFPzSyLTnKs52ULviJVCBEhKJhqPUEaUL3s65fwVTP9S4lTzvhe5C9vHM2tV8U8ds4MSaoCKnTqNsPYIg2cle.mp4', ['sparams' => 'path']);
         $this->assertSame('https://s1.cdn.cz/33/LezTxJHdxSgXUeks84u12fvyHoAtP6sGQt0YUdyCLYF6gH7MTKDSnGfVkFPzSyLTnKs52ULviJVCBEhKJhqPUEaUL3s65fwVTP9S4lTzvhe5C9vHM2tV8U8ds4MSaoCKnTqNsPYIg2cle.mp4?sparams=path&signature=8dea03fb714a8b3f748407f3eb9aa816470c271d', $url);

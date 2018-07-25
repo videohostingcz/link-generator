@@ -1,4 +1,5 @@
 <?php
+
 namespace Videohostingcz;
 
 /**
@@ -12,7 +13,7 @@ class LinkGenerator implements ILinkGenerator
     /**
      * @var array Available parameters
      */
-    private $availableParams = ['filename', 'expires', 'token', 'expires', 'limitsize', 'limitid', 'rate', 'ip', 'ipm', 'sparams'];
+    private $availableParams = ['filename', 'expires', 'token', 'expires', 'limitsize', 'limitid', 'rate', 'rateafter', 'ip', 'ipm', 'sparams'];
 
     /**
      * @copydoc ILinkGenerator::generate
@@ -44,6 +45,11 @@ class LinkGenerator implements ILinkGenerator
         // check value of parameter 'rate'
         if (isset($params['rate']) && !preg_match("/^[1-9][0-9]*[k]?$/", $params['rate'])) {
             throw new LinkGeneratorException("Parameter 'rate' contains invalid characters!");
+        }
+
+        // check value of parameter 'rateafter'
+        if (isset($params['rateafter']) && !preg_match("/^10m$/", $params['rateafter'])) {
+            throw new LinkGeneratorException("Parameter 'rateafter' contains invalid characters!");
         }
 
         // check value of parameter 'ip'
@@ -92,9 +98,9 @@ class LinkGenerator implements ILinkGenerator
         }
 
         return (filter_var($mask, FILTER_VALIDATE_INT, [
-                'options' => [
-                    'min_range' => 0,
-                    'max_range' => $maxRange]]) === false) ? false : true;
+                    'options' => [
+                        'min_range' => 0,
+                        'max_range' => $maxRange]]) === false) ? false : true;
     }
 
     /**
