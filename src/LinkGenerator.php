@@ -33,7 +33,7 @@ class LinkGenerator implements ILinkGenerator
         }
 
         // check value of parameter 'expires'
-        if (isset($params['expires']) && !ctype_digit($params['expires'])) {
+        if (isset($params['expires']) && !ctype_digit((string) $params['expires'])) {
             throw new LinkGeneratorException("Parameter 'expires' contains non number character!");
         }
 
