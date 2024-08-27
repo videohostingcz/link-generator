@@ -1,7 +1,7 @@
 {
     "name": "videohostingcz/link-generator",
     "description": "Knihovna generující linky pro snadný přístup k souborům uloženým na úložištích VideoHosting.cz.",
-    "keywords": [""],
+    "keywords": ["videohosting.cz"],
     "homepage": "http://www.videohosting.cz",
     "license": "MIT",
     "support": {
