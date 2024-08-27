@@ -73,21 +73,21 @@ Zatím je nastavitelná pouze hodnota 10 MB. Pracujeme na zrušení tohoto omeze
 Příklad php kódu pro získání URL odkazu k souboru:
 ```php
     use Videohostingcz\LinkGenerator;
-    
+
     $generator = new LinkGenerator();
-    
+
     // view link to public file (no parameters)
     url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4');
-    
+
     // download link to public file
     $url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['filename' => 'myvideo.mp4']);
-    
+
     // view link to private file
     $url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['token' => '9f4a6a71499', 'sparams' => 'token,path'], 'secretKey');
-    
+
     // preview link to private file
     $url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['limitsize' => 10485760, 'token' => '9f4a6a71499', 'sparams' => 'token,path'], 'secretKey');
-    
+
     // download link to private file
     $url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['filename' => 'myvideo.mp4', 'token' => '9f4a6a71499', 'sparams' => 'token,path'], 'secretKey');
 ```

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Videohostingcz;
 
 use InvalidArgumentException;
@@ -9,5 +11,4 @@ use InvalidArgumentException;
  */
 class LinkGeneratorException extends InvalidArgumentException
 {
-    //
 }
