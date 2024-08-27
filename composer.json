@@ -29,9 +29,6 @@
             "LinkGenerator\\Tests\\": "tests/"
         }
     },
-    "config": {
-        "preferred-install": "dist"
-    },
     "scripts": {
 	"ci": [
             "@phpcs",
