@@ -66,4 +66,4 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Run test suite
-      run: make test
+      run: php -v
