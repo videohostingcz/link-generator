@@ -1,10 +1,9 @@
 # Videohostingcz/link-generator
 
-[![Build Status](https://travis-ci.org/videohostingcz/link-generator.svg?branch=master)](https://travis-ci.org/videohostingcz/link-generator)
-
-Knihovna generující linky pro snadný přístup k souborům uloženým na úložištích VideoHosting.cz.
+Knihovna generující odkazy pro snadný přístup k souborům uloženým na úložištích VideoHosting.cz.
 
 ## Instalace
+
 Nejjednodušší je cesta k instalování knihovny je pomocí utility [Composer](http://getcomposer.org/).
 
 Příklad souboru *composer.json*:
@@ -27,12 +26,14 @@ Příklad souboru *composer.json*:
 ```
 
 ## Popis rozhraní knihovny
+
 Pro vytvoření URL odkazu k souboru slouží metoda *generate* ze třídy *LinkGenerator*. Tato metodá má tři parametry:
 * ***$uri*** - URI k přístup k souboru,
 * ***$params*** - pole argumentů (viz sekce Popis dostupných parametrů),
 * ***$secretKey*** - hodnota Sdíleného tajemství používaná k určení hodnoty argumentu *signature*. Pro přístup k souborům musí být taho hodnota shodná s hodnotou *Sdíleného tajemství* v nastavení projektu.
 
 ### Popis dostupných parametrů 
+
 Popis dostupných klíčů pole argumentů:
 * **filename** - Určuje jméno staženého souboru. Používá se pro stahování souboru.
 
@@ -70,28 +71,37 @@ Zatím je nastavitelná pouze hodnota 10 MB. Pracujeme na zrušení tohoto omeze
 ```Příklad: $params['sparams'] = 'token,expires'```
 
 ### Příklad kódu
+
 Příklad php kódu pro získání URL odkazu k souboru:
+
 ```php
     use Videohostingcz\LinkGenerator;
-    
+
     $generator = new LinkGenerator();
-    
+
     // view link to public file (no parameters)
     url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4');
-    
+
     // download link to public file
     $url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['filename' => 'myvideo.mp4']);
-    
+
     // view link to private file
     $url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['token' => '9f4a6a71499', 'sparams' => 'token,path'], 'secretKey');
-    
+
     // preview link to private file
     $url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['limitsize' => 10485760, 'token' => '9f4a6a71499', 'sparams' => 'token,path'], 'secretKey');
-    
+
     // download link to private file
     $url = $generator->generate('s1.cdn.cz/wq5UXbiW.mp4', ['filename' => 'myvideo.mp4', 'token' => '9f4a6a71499', 'sparams' => 'token,path'], 'secretKey');
 ```
 
+## Vývoj
+
+Po všech změnách je dobré udělat kontrolu pomocí:
+
+```
+make qa
+```
 
 -----
 Projekt je uložen na [http://github.com/videohostingcz/link-generator](http://github.com/videohostingcz/link-generator).
