@@ -12,7 +12,7 @@ namespace Videohostingcz;
 class LinkGenerator implements ILinkGenerator
 {
 	/** @var array<string> Available parameters */
-	private array $availableParams = ['filename', 'expires', 'token', 'limitsize', 'limitid', 'rate', 'rateafter', 'ip', 'ipm', 'sparams'];
+	private $availableParams = ['filename', 'expires', 'token', 'limitsize', 'limitid', 'rate', 'rateafter', 'ip', 'ipm', 'sparams'];
 
 
 	/**
